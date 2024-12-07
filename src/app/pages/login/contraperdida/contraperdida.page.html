@@ -1,0 +1,40 @@
+
+<app-header backButton="/login" titulo="Recuperar Cuenta"></app-header>
+<ion-content >
+
+  <div class="d-flex-center">
+    
+    <form [formGroup]="form" class="auth-form" (ngSubmit)="ingresar()" (keypress.enter)="ingresar()">
+
+      <app-logo></app-logo>
+
+      <p class="ion-text-center"><strong>Te enviaremos un correo con instrucciones para recuperar tu contraseña</strong></p>
+
+      <!-- //CORREO ELECTRONICO -->
+      <app-input
+        autocomplete="email"
+        icon="mail-outline"
+        [control]="form.controls.email"
+        type="email"
+        label="Correo Electrónico"
+      ></app-input>
+      <!-- esto es para mostrar un error si hay alguno  en el input email -->
+      <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched">
+        <div *ngIf="form.controls.email.errors?.['required']">El Correo Electrónico es requerido</div>
+        <div *ngIf="form.controls.email.errors?.['email']">Ingrese un correo electrónico válido</div>
+      </div> 
+
+
+
+      <!-- //BOTON PARA INGRESAR -->
+      <ion-button expand="block" mode="ios" class="submit" type="submit" [disabled]="form.invalid">
+        Recuperar Contraseña
+        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      </ion-button>
+      
+
+  
+    </form>
+  </div>
+
+</ion-content>

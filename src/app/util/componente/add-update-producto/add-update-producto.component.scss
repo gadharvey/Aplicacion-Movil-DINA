@@ -1,0 +1,26 @@
+.image-icon{
+    font-size: 100px;
+    opacity: 30%;
+}
+
+ion-avatar{
+    width: 200px;
+    height: 160px;
+    --border-radius: 15px;
+    margin: 0 auto;
+}
+
+.custom-bordered-item {
+    --inner-padding: 10px;
+    --background: #fff;
+    --border-color: #ccc;
+    --border-radius: 8px;
+    --box-shadow: none;
+    --border-width: 0;
+    --ion-item-border: none; /* Elimina la línea inferior */
+    
+    border: 1px solid var(--border-color); /* Borde externo */
+    border-radius: var(--border-radius);
+    padding: 5px;
+    margin: 10px 0;
+}

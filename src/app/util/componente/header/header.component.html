@@ -1,0 +1,25 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+      <!-- BOTON DE ATRAS -->
+      <ion-back-button *ngIf="backButton" [defaultHref]="backButton"></ion-back-button>
+      
+      <!-- CERRAR MODAL -->
+      <ion-button (click)="dismissmodal()" *ngIf="isModal">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+
+
+        <ion-menu-button *ngIf="showMenu" menu="menu-content"></ion-menu-button>
+
+    </ion-buttons>
+
+    <ion-title style="text-align: left;">
+      <strong>{{titulo}}</strong>
+    </ion-title>
+    <img class="logo" slot="end" src="assets/icon/dina.png" style="width: 60px; height: 60px;">
+    
+
+  </ion-toolbar>
+</ion-header>

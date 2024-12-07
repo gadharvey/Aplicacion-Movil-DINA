@@ -1,0 +1,42 @@
+<app-header [showMenu]="true" titulo="Caja"></app-header>
+
+<ion-content padding>
+  <!-- Mostrar productos en el carrito -->
+  <ion-list *ngIf="items && items.length > 0">
+    <ion-item *ngFor="let item of items">
+      <ion-avatar slot="start">
+        <img [src]="item.image" alt="{{ item.name }}" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ item.name }}</h2>
+        <p>Cantidad: {{ item.currentNumber }}</p>
+        <p>Precio Unitario: {{ item.price | currency }}</p>
+        <p><strong>Precio Total: {{ item.precioTotal | currency }}</strong></p>
+      </ion-label>
+
+      <!-- Botón para eliminar el item -->
+      <ion-button color="danger" fill="clear" (click)="deleteBoxItem2(item)" slot="end">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Si el carrito está vacío, mostrar un mensaje -->
+  <ion-item *ngIf="!items || items.length === 0">
+    <ion-label>No hay productos en el carrito</ion-label>
+  </ion-item>
+
+  <!-- Mostrar precio final del carrito -->
+  <ion-item>
+    <ion-label>
+      <h2>
+        <strong>Precio Total de la Caja: {{ totalPrice | currency }}</strong>
+      </h2>
+    </ion-label>
+  </ion-item>
+
+  <!-- Botón para generar el reporte -->
+  <ion-button expand="full" color="primary" (click)="generateReport()">
+    Generar Reporte
+  </ion-button>
+</ion-content>

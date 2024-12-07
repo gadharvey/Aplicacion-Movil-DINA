@@ -1,0 +1,112 @@
+<app-header [isModal]="true" [titulo]="producto?'Actualizar Producto':'Agregar Producto'"></app-header>
+
+<ion-content>
+    <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="ingresar()" (keypress.enter)="ingresar()">
+
+        <!-- Si existe una imagen -->
+        <ion-avatar *ngIf="form.value.image">
+            <img [src]="form.value.image" />
+        </ion-avatar>
+
+        <!-- Si no existe una imagen -->
+        <ion-icon class="image-icon" *ngIf="!form.value.image" name="image-outline"></ion-icon>
+
+        <br>    
+
+        <!-- Seleccionar/Tomar Foto -->
+        <ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
+            Tomar/Seleccionar 
+        </ion-button>
+
+        <!-- //NOMBRE -->
+        <app-input autocomplete="name" [control]="form.controls.name" type="text" label="Nombre"></app-input>
+        <!-- esto es para mostrar un error si hay alguno  en el input name -->
+        <div class="validators" *ngIf="form.controls.name.errors && form.controls.name.touched">
+            <div *ngIf="form.controls.name.errors?.['required']">Este campo es requerido</div>
+            <div *ngIf="form.controls.name.errors?.['minLength']">El nombre debe tener al menos 4 caracteres</div>
+        </div>
+
+        <!-- Proveedor -->
+        <ion-item class="custom-bordered-item" >
+            
+            <ion-select label="Marca" label-placement="floating" formControlName="proveedor">
+                <ion-select-option value="Nike">Nike</ion-select-option>
+                <ion-select-option value="Adidas">Adidas</ion-select-option>
+                <ion-select-option value="Puma">Puma</ion-select-option>
+                <ion-select-option value="Vans">Vans</ion-select-option>
+                <ion-select-option value="New Balance">New Balance</ion-select-option>
+                <ion-select-option value="Converse">Converse</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+
+        <!-- //ubicacion Seccion -->
+        <ion-item class="custom-bordered-item">
+            <ion-select label="Sección" label-placement="floating" formControlName="ubicacionSeccion">
+                <ion-select-option value="Sección A">Sección A</ion-select-option>
+                <ion-select-option value="Sección B">Sección B</ion-select-option>
+                <ion-select-option value="Sección C">Sección C</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <!-- //ubicacion Estante -->
+        <ion-item class="custom-bordered-item">
+            <ion-select label="Estante" label-placement="floating" formControlName="ubicacionEstante">
+                <ion-select-option value="Estante 1">Estante 1</ion-select-option>
+                <ion-select-option value="Estante 2">Estante 2</ion-select-option>
+                <ion-select-option value="Estante 3">Estante 3</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <!-- Género -->
+        <ion-item class="custom-bordered-item">
+            <ion-select label="Género" label-placement="floating" formControlName="genero">
+                <ion-select-option value="Hombre">Hombre</ion-select-option>
+                <ion-select-option value="Mujer">Mujer</ion-select-option>
+                <ion-select-option value="Niños">Niños</ion-select-option>
+                <ion-select-option value="Unisex">Unisex</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+
+        <!-- //Precio -->
+        <app-input [control]="form.controls.price" type="number" label="Precio" (ionInput)="setNumberInputs()"></app-input>
+        <!-- esto es para mostrar un error si hay alguno  en el input price -->
+        <div class="validators" *ngIf="form.controls.price.errors && form.controls.price.touched">
+            <div *ngIf="form.controls.price.errors?.['required']">Este campo es requerido </div>
+            <div *ngIf="form.controls.price.errors?.['min']">El precio debe ser mayor a 0</div>
+        </div>
+
+        <!-- //soldUnits -->
+        <app-input [control]="form.controls.soldUnits" type="number" label="Unidades" (ionInput)="setNumberInputs()"></app-input>
+        <!-- esto es para mostrar un error si hay alguno  en el input soldUnits -->
+        <div class="validators" *ngIf="form.controls.soldUnits.errors && form.controls.soldUnits.touched">
+            <div *ngIf="form.controls.soldUnits.errors?.['required']">Este campo es requerido </div>
+            <div *ngIf="form.controls.soldUnits.errors?.['min']">El cantidad debe ser mayor a 0</div>
+        </div>
+
+        <!-- //talla -->
+        <app-input [control]="form.controls.talla" type="number" label="Talla"></app-input>
+        <!-- esto es para mostrar un error si hay alguno  en el input talla -->
+        <div class="validators" *ngIf="form.controls.talla.errors && form.controls.talla.touched">
+            <div *ngIf="form.controls.talla.errors?.['required']">Este campo es requerido </div>
+            <div *ngIf="form.controls.talla.errors?.['min']">La talla debe ser mayor a 0</div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- //BOTON PARA REGISTRARSE -->
+        <ion-button mode="ios" class="ion-margin" type="submit" [disabled]="form.invalid">
+            {{producto?'Actualizar Producto':'Agregar Producto'}}
+            <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+        </ion-button>
+
+
+    </form>
+</ion-content>
